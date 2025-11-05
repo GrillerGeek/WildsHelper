@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#2c5530"/>
+
+  <!-- Stylized tree/wilderness symbol -->
+  <g transform="translate(256, 256)">
+    <!-- Tree trunk -->
+    <rect x="-20" y="80" width="40" height="100" fill="#8b6f47" rx="5"/>
+
+    <!-- Tree foliage - layered triangles -->
+    <path d="M -100 80 L 0 -80 L 100 80 Z" fill="#4a7c4e"/>
+    <path d="M -90 40 L 0 -100 L 90 40 Z" fill="#5a8c5e"/>
+    <path d="M -80 0 L 0 -120 L 80 0 Z" fill="#6a9c6e"/>
+
+    <!-- Waves/water at bottom (shipwreck theme) -->
+    <path d="M -150 140 Q -120 130 -90 140 T -30 140 T 30 140 T 90 140 T 150 140 L 150 180 L -150 180 Z"
+          fill="#4a7c9e" opacity="0.7"/>
+    <path d="M -150 155 Q -120 145 -90 155 T -30 155 T 30 155 T 90 155 T 150 155 L 150 180 L -150 180 Z"
+          fill="#5a8cae" opacity="0.6"/>
+  </g>
+
+  <!-- Border -->
+  <rect width="512" height="512" fill="none" stroke="#8b6f47" stroke-width="8" rx="64"/>
+</svg>

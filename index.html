@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solo RPG companion app for Shipwreck in the Wildlands">
+    <meta name="theme-color" content="#2c5530">
+    <title>Shipwreck in the Wildlands - Helper App</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iOS Specific Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wilds Helper">
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-72x72.png">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Shipwreck in the Wildlands</h1>
+            <p class="subtitle">Solo RPG Helper</p>
+        </header>
+
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="character">Character</button>
+            <button class="tab-btn" data-tab="oracles">Oracles</button>
+            <button class="tab-btn" data-tab="resources">Resources</button>
+            <button class="tab-btn" data-tab="reference">Reference</button>
+        </nav>
+
+        <main class="content">
+            <!-- Character Tab -->
+            <section id="character-tab" class="tab-content active">
+                <h2>Character Sheet</h2>
+
+                <div class="character-section">
+                    <label for="char-name">Character Name:</label>
+                    <input type="text" id="char-name" placeholder="Enter name">
+
+                    <label for="background">Background:</label>
+                    <select id="background">
+                        <option value="">Select Background</option>
+                        <option value="merchant">Merchant</option>
+                        <option value="sailor">Sailor</option>
+                        <option value="scholar">Scholar</option>
+                        <option value="artisan">Artisan</option>
+                        <option value="soldier">Soldier</option>
+                        <option value="wanderer">Wanderer</option>
+                    </select>
+                </div>
+
+                <div class="skills-section">
+                    <h3>Skills</h3>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <label>Athletics</label>
+                            <input type="number" id="athletics" min="0" max="5" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <label>Awareness</label>
+                            <input type="number" id="awareness" min="0" max="5" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <label>Cunning</label>
+                            <input type="number" id="cunning" min="0" max="5" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <label>Lore</label>
+                            <input type="number" id="lore" min="0" max="5" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <label>Survival</label>
+                            <input type="number" id="survival" min="0" max="5" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <label>Will</label>
+                            <input type="number" id="will" min="0" max="5" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="stat-box">
+                        <label>HP (10 + Athletics)</label>
+                        <div class="stat-value" id="max-hp">10</div>
+                        <label>Current HP</label>
+                        <input type="number" id="current-hp" value="10">
+                    </div>
+                    <div class="stat-box">
+                        <label>AP (Top 2 Skills + 5)</label>
+                        <div class="stat-value" id="max-ap">5</div>
+                        <label>Current AP</label>
+                        <input type="number" id="current-ap" value="5">
+                    </div>
+                    <div class="stat-box">
+                        <label>XP</label>
+                        <input type="number" id="xp" value="0">
+                    </div>
+                </div>
+
+                <div class="equipment-section">
+                    <h3>Equipment & Notes</h3>
+                    <textarea id="equipment" rows="6" placeholder="List your equipment, items, and notes..."></textarea>
+                </div>
+            </section>
+
+            <!-- Oracles Tab -->
+            <section id="oracles-tab" class="tab-content">
+                <h2>Dice & Oracles</h2>
+
+                <div class="dice-roller">
+                    <h3>Skill Check</h3>
+                    <div class="check-inputs">
+                        <label>Skill Level:</label>
+                        <input type="number" id="skill-level" min="0" max="5" value="0">
+                        <label>DC:</label>
+                        <select id="dc-select">
+                            <option value="5">Easy (5)</option>
+                            <option value="8">Moderate (8)</option>
+                            <option value="12">Challenging (12)</option>
+                            <option value="15">Hard (15)</option>
+                            <option value="18">Extreme (18)</option>
+                            <option value="20">Legendary (20+)</option>
+                        </select>
+                        <label>Modifier:</label>
+                        <input type="number" id="modifier" value="0">
+                    </div>
+                    <button class="roll-btn" id="skill-check-btn">Roll Skill Check</button>
+                    <div class="roll-result" id="skill-check-result"></div>
+                </div>
+
+                <div class="oracle-section">
+                    <h3>Weather Oracle</h3>
+                    <label>Season:</label>
+                    <select id="season-select">
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="fall">Fall</option>
+                        <option value="winter">Winter</option>
+                    </select>
+                    <button class="roll-btn" id="weather-btn">Roll Weather</button>
+                    <div class="roll-result" id="weather-result"></div>
+                </div>
+
+                <div class="oracle-section">
+                    <h3>Discovery Oracle</h3>
+                    <button class="roll-btn" id="discovery-btn">Roll Discovery</button>
+                    <div class="roll-result" id="discovery-result"></div>
+                </div>
+
+                <div class="oracle-section">
+                    <h3>Encounter Oracle</h3>
+                    <button class="roll-btn" id="encounter-btn">Roll Encounter</button>
+                    <div class="roll-result" id="encounter-result"></div>
+                </div>
+
+                <div class="oracle-section">
+                    <h3>Complication Oracle</h3>
+                    <button class="roll-btn" id="complication-btn">Roll Complication</button>
+                    <div class="roll-result" id="complication-result"></div>
+                </div>
+
+                <div class="oracle-section">
+                    <h3>Yes/No Oracle</h3>
+                    <label>Likelihood:</label>
+                    <select id="yesno-likelihood">
+                        <option value="unlikely">Unlikely</option>
+                        <option value="possible" selected>Possible</option>
+                        <option value="likely">Likely</option>
+                    </select>
+                    <button class="roll-btn" id="yesno-btn">Ask Yes/No</button>
+                    <div class="roll-result" id="yesno-result"></div>
+                </div>
+            </section>
+
+            <!-- Resources Tab -->
+            <section id="resources-tab" class="tab-content">
+                <h2>Resource Tracking</h2>
+
+                <div class="time-tracker">
+                    <h3>Time & Season</h3>
+                    <div class="time-controls">
+                        <label>Day:</label>
+                        <input type="number" id="current-day" value="1" min="1">
+                        <label>Season:</label>
+                        <select id="current-season">
+                            <option value="spring">Spring</option>
+                            <option value="summer">Summer</option>
+                            <option value="fall">Fall</option>
+                            <option value="winter">Winter</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="survival-needs">
+                    <h3>Survival Needs</h3>
+                    <div class="need-item">
+                        <label>Water (days supply):</label>
+                        <input type="number" id="water-supply" value="0" min="0">
+                        <button class="adjust-btn" onclick="adjustResource('water-supply', 1)">+</button>
+                        <button class="adjust-btn" onclick="adjustResource('water-supply', -1)">-</button>
+                    </div>
+                    <div class="need-item">
+                        <label>Food (days supply):</label>
+                        <input type="number" id="food-supply" value="0" min="0">
+                        <button class="adjust-btn" onclick="adjustResource('food-supply', 1)">+</button>
+                        <button class="adjust-btn" onclick="adjustResource('food-supply', -1)">-</button>
+                    </div>
+                    <div class="need-item">
+                        <label>
+                            <input type="checkbox" id="shelter-check">
+                            Shelter Secured
+                        </label>
+                    </div>
+                    <div class="need-item">
+                        <label>
+                            <input type="checkbox" id="safety-check">
+                            Safe Location
+                        </label>
+                    </div>
+                </div>
+
+                <div class="challenge-tracker">
+                    <h3>XP Challenges</h3>
+                    <div class="challenge-log">
+                        <textarea id="challenge-notes" rows="8" placeholder="Track completed challenges...
+1 XP - Basic (Simple skill check)
+2 XP - Advanced (Multiple checks or risk)
+3 XP - Major (Significant obstacle)
+4 XP - Epic (Life-threatening or major goal)"></textarea>
+                    </div>
+                </div>
+
+                <div class="exploration-tracker">
+                    <h3>Exploration</h3>
+                    <textarea id="exploration-notes" rows="6" placeholder="Track hex locations, discoveries, and map notes..."></textarea>
+                </div>
+            </section>
+
+            <!-- Reference Tab -->
+            <section id="reference-tab" class="tab-content">
+                <h2>Quick Reference</h2>
+
+                <div class="ref-section">
+                    <h3>Difficulty Classes</h3>
+                    <table class="ref-table">
+                        <tr><td>Easy</td><td>5</td></tr>
+                        <tr><td>Moderate</td><td>8</td></tr>
+                        <tr><td>Challenging</td><td>12</td></tr>
+                        <tr><td>Hard</td><td>15</td></tr>
+                        <tr><td>Extreme</td><td>18</td></tr>
+                        <tr><td>Legendary</td><td>20+</td></tr>
+                    </table>
+                </div>
+
+                <div class="ref-section">
+                    <h3>Skill Check Modifiers</h3>
+                    <table class="ref-table">
+                        <tr><td>Prepared/Advantageous</td><td>+2</td></tr>
+                        <tr><td>Rushed/Hindered</td><td>-2</td></tr>
+                        <tr><td>Group Help</td><td>+1 per helper</td></tr>
+                    </table>
+                </div>
+
+                <div class="ref-section">
+                    <h3>XP Awards</h3>
+                    <table class="ref-table">
+                        <tr><td>Basic Challenge</td><td>1 XP</td></tr>
+                        <tr><td>Advanced Challenge</td><td>2 XP</td></tr>
+                        <tr><td>Major Challenge</td><td>3 XP</td></tr>
+                        <tr><td>Epic Challenge</td><td>4 XP</td></tr>
+                    </table>
+                </div>
+
+                <div class="ref-section">
+                    <h3>Survival Needs</h3>
+                    <ul class="ref-list">
+                        <li><strong>Water:</strong> 1 unit per day (DC 12 Survival to find)</li>
+                        <li><strong>Food:</strong> 1 unit per day (DC 12 Survival to forage)</li>
+                        <li><strong>Shelter:</strong> Required for rest (DC 8 Survival to build)</li>
+                        <li><strong>Safety:</strong> Affects rest quality</li>
+                    </ul>
+                </div>
+
+                <div class="ref-section">
+                    <h3>Rest & Recovery</h3>
+                    <ul class="ref-list">
+                        <li><strong>Short Rest:</strong> 1 hour, recover 1d6 HP</li>
+                        <li><strong>Long Rest:</strong> 8 hours (needs shelter, food, water), recover all HP and AP</li>
+                        <li><strong>Rest Penalties:</strong> Missing needs prevents full recovery</li>
+                    </ul>
+                </div>
+
+                <div class="ref-section">
+                    <h3>Action Costs</h3>
+                    <ul class="ref-list">
+                        <li>Simple Action: 1 AP</li>
+                        <li>Complex Action: 2 AP</li>
+                        <li>Extended Action: 3+ AP</li>
+                        <li>AP refreshes on long rest</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <button class="save-btn" id="save-btn">Save Game</button>
+            <button class="load-btn" id="load-btn">Load Game</button>
+            <button class="reset-btn" id="reset-btn">New Character</button>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Optionally, show your own install button
+            console.log('PWA install prompt available');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+            deferredPrompt = null;
+        });
+    </script>
+</body>
+</html>
