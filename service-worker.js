@@ -1,10 +1,10 @@
-const CACHE_NAME = 'wilds-helper-v1';
+const CACHE_NAME = 'wilds-helper-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json'
+  '/WildsHelper/',
+  '/WildsHelper/index.html',
+  '/WildsHelper/styles.css',
+  '/WildsHelper/app.js',
+  '/WildsHelper/manifest.json'
 ];
 
 // Install event - cache all resources

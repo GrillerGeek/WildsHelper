@@ -2,12 +2,12 @@
   "name": "Shipwreck in the Wildlands Helper",
   "short_name": "Wilds Helper",
   "description": "Solo RPG companion app for Shipwreck in the Wildlands",
-  "start_url": "/",
+  "start_url": "/WildsHelper/",
   "display": "standalone",
   "background_color": "#2c5530",
   "theme_color": "#2c5530",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "/WildsHelper/",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
